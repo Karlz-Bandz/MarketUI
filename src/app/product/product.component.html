@@ -1,28 +1,32 @@
 <div class="container">
   <div class="header">
-    <h2>Lista produktów</h2>
-    <button (click)="logout()" class="logout-btn">Wyloguj</button>
+    <h2>Product list</h2>
+    <button (click)="logout()" class="logout-btn">Log out</button>
   </div>
 
-  <div *ngIf="loading" class="loading">Ładowanie...</div>
+  <div *ngIf="loading" class="loading">Loading...</div>
 
   <table *ngIf="!loading" class="product-table">
     <thead>
       <tr>
         <th>ID</th>
-        <th>Nazwa</th>
-        <th>Opis</th>
-        <th>Ilość</th>
-        <th>Cena</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Price</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let product of products">
         <td>{{ product.id }}</td>
-        <td>{{ product.name }}</td>
+        <td class="product-name" (click)="goToProduct(product.id)">{{ product.name }}</td>
         <td>{{ product.description }}</td>
         <td>{{ product.quantity }}</td>
         <td>{{ product.price }} zł</td>
+        @if(hasRoleAdmin) {
+        <button (click)="deleteProductById(product.id)">Delete</button>
+        }
+
       </tr>
     </tbody>
   </table>

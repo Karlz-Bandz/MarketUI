@@ -1,0 +1,11 @@
+.product-name {
+    cursor: pointer;
+}
+
+.product-name:hover {
+    background-color: #f0f0f0;
+}
+
+button {
+    cursor: pointer;
+}

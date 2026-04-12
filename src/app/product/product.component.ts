@@ -8,13 +8,16 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule
+  ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
 export class ProductComponent implements OnInit {
   products: Product[] = [];
   loading = false;
+  hasRoleAdmin: boolean = false;
 
   constructor(
     private productService: ProductService,
@@ -24,6 +27,22 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     this.loadProducts();
+    this.hasRoleAdmin = this.authService.hasRole('ADMIN');
+  }
+
+  goToProduct(id: number) {
+    this.router.navigate(['/product', id]);
+  }
+
+  deleteProductById(id: number) {
+
+    if (confirm("Do you want delete?")) {
+      this.productService.deleteProduct(id).subscribe(() => {
+        this.loadProducts();
+      }, (err: any) => {
+        console.error('Error delete product!');
+      })
+    }
   }
 
   loadProducts() {
