@@ -42,16 +42,12 @@ export class AuthService {
         .map(r => r.replace('ROLE_', ''));
     }
 
-    console.log('Roles: ' + roles);
-
     this.rolesSubject.next(roles);
   }
 
   private decodeToken(token: string): JwtPayload | null {
     try {
-      console.log('Decoder: ' + token);
       const decoded = jwtDecode<JwtPayload>(token);
-      console.log(decoded)
       return decoded;
     } catch {
       return null;

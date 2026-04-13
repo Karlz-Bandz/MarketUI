@@ -2,6 +2,9 @@
   <div class="header">
     <h2>Product list</h2>
     <button (click)="logout()" class="logout-btn">Log out</button>
+    @if(hasRoleAdmin) {
+      <button (click)="goToAddProduct()">Add product</button>
+    }
   </div>
 
   <div *ngIf="loading" class="loading">Loading...</div>
@@ -22,7 +25,7 @@
         <td class="product-name" (click)="goToProduct(product.id)">{{ product.name }}</td>
         <td>{{ product.description }}</td>
         <td>{{ product.quantity }}</td>
-        <td>{{ product.price }} zł</td>
+        <td>$ {{ product.price }}</td>
         @if(hasRoleAdmin) {
         <button (click)="deleteProductById(product.id)">Delete</button>
         }

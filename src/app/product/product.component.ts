@@ -34,6 +34,10 @@ export class ProductComponent implements OnInit {
     this.router.navigate(['/product', id]);
   }
 
+  goToAddProduct() {
+    this.router.navigate(['/product/add']);
+  }
+
   deleteProductById(id: number) {
 
     if (confirm("Do you want delete?")) {

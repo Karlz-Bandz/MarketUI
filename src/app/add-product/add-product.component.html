@@ -1,0 +1,27 @@
+<form [formGroup]="productForm" (ngSubmit)="addProduct()">
+    <label>
+        Name:
+        <input type="text" formControlName="name">
+    </label>
+
+    <div *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched">
+        Name is required
+    </div>
+
+    <label>
+        Description:
+        <input type="text" formControlName="description">
+    </label>
+
+    <label>
+        Quantity:
+        <input type="number" formControlName="quantity">
+    </label>
+
+     <label>
+        Price:
+        <input type="price" formControlName="price" step="0.01" min="0">
+    </label>
+
+    <button type="submit">Add Product</button>
+</form>
