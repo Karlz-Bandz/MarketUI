@@ -28,8 +28,8 @@
         <td>$ {{ product.price }}</td>
         @if(hasRoleAdmin) {
         <button (click)="deleteProductById(product.id)">Delete</button>
+        <button (click)="goToUpdate(product.id)">Update</button>
         }
-
       </tr>
     </tbody>
   </table>
