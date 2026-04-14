@@ -24,6 +24,8 @@ export class UpdateProductComponent implements OnInit {
     price: new FormControl<number>(0, [Validators.required, Validators.min(0)])
   });
 
+  productId!: number;
+
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService
@@ -33,8 +35,6 @@ export class UpdateProductComponent implements OnInit {
     this.productId = Number(this.route.snapshot.paramMap.get('id'));
     this.getProductById(this.productId);
   }
-
-  productId!: number;
 
   public getProductById(id: number) {
     this.productService.getProductById(id).subscribe((res: any) => {
