@@ -13,4 +13,8 @@ export class OrderService {
   createOrder(orderRequest: OrderRequest) {
     return this.http.post<Order>(`${this.apiUrl}/order`, orderRequest);
   }
+
+  getAllClientOrders() {
+    return this.http.get<Order[]>(`${this.apiUrl}/order`);
+  }
 }

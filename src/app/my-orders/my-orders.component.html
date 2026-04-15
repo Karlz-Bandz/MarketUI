@@ -1,0 +1,20 @@
+<h2>My Orders</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Status</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (order of orders; track order) {
+        <tr>
+            <td>{{ order.orderId }}</td>
+            <td>{{ order.status }}</td>
+            <td>${{ order.price }}</td>
+        </tr>
+        }
+    </tbody>
+</table>

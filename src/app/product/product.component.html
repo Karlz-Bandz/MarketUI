@@ -2,6 +2,7 @@
   <div class="header">
     <h2>Product list</h2>
     <button (click)="logout()" class="logout-btn">Log out</button>
+    <button (click)="goToMyOrders()" >My orders</button>
     @if(hasRoleAdmin) {
       <button (click)="goToAddProduct()">Add product</button>
     }
