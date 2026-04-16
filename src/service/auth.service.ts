@@ -5,6 +5,7 @@ import { environment } from '../environment/environment';
 import { TokenService } from '../core/service/token.service';
 import { BehaviorSubject } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { RegisterRequest } from '../model/register-request';
 
 interface JwtPayload {
   scope: string;
@@ -62,8 +63,8 @@ export class AuthService {
       }));
   }
 
-  register(user: { username: string; email: string; password: string }) {
-    return this.http.post(`${this.apiUrl}/users/register`, user);
+  register(registerRequest: RegisterRequest) {
+    return this.http.post(`${this.apiUrl}/users/register`, registerRequest);
   }
 
   logout() {

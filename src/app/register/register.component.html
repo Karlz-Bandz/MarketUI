@@ -1,0 +1,40 @@
+<form [formGroup]="registerForm" (ngSubmit)="registerUser()">
+    <label>
+        Email:
+        <input type="text" formControlName="email">
+    </label>
+
+    <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+        Email is required
+    </div>
+
+    <label>
+        Username:
+        <input type="text" formControlName="username">
+    </label>
+
+     <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+        Username is required
+    </div>
+
+    <label>
+        Password:
+        <input type="password" formControlName="password">
+    </label>
+
+     
+    <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+        Password is required
+    </div>
+
+     <label>
+        Repeat password:
+        <input type="password" formControlName="password2">
+    </label>
+
+    <div *ngIf="registerForm.get('password2')?.invalid && registerForm.get('password2')?.touched">
+        Repeat password is required
+    </div>
+
+    <button type="submit">Register</button>
+</form>
