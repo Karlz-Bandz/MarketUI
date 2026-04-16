@@ -8,8 +8,10 @@
       <label>Password:</label>
       <input type="password" [(ngModel)]="password" name="password" required>
     </div>
+
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
     <button type="submit">Log in</button>
-    <button (click)="goToRegister()">Register</button>
+    <button type="button" (click)="goToRegister()">Register</button>
   </form>
-  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
 </div>
