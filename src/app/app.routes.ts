@@ -5,8 +5,10 @@ import { ProductPresentationComponent } from './product-presentation/product-pre
 import { AddProductComponent } from './add-product/add-product.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { AllOrdersComponent } from './all-orders/all-orders.component';
 
 export const routes: Routes = [
+    { path: 'orders/all', component: AllOrdersComponent },
     { path: 'orders/my', component: MyOrdersComponent },
     { path: 'product/update/:id', component: UpdateProductComponent },
     { path: 'product/add', component: AddProductComponent },

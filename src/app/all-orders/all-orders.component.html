@@ -1,0 +1,31 @@
+<h2>My Orders</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Status</th>
+            <th>Owner</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (order of orders; track order) {
+        <tr>
+            <td>{{ order.orderId }}</td>
+            <td>{{ order.status }}</td>
+            <td>{{ order.ownerEmail }}</td>
+            <td>${{ order.price }}</td>
+            <td>
+                <select [(ngModel)]="order.status" (change)="updateOrderStatus(order.orderId, order.status)">
+                    <option value="PAID">Paid</option>
+                    <option value="PENDING">Pending</option>
+                    <option value="CREATED">Created</option>
+                    <option value="CANCELED">Canceled</option>
+                    <option value="FINISHED">Finished</option>
+                </select>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

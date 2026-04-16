@@ -30,6 +30,10 @@ export class ProductComponent implements OnInit {
     this.hasRoleAdmin = this.authService.hasRole('ADMIN');
   }
 
+  goToAllOrders() {
+    this.router.navigate(['/orders/all']);
+  }
+
   goToMyOrders() {
     this.router.navigate(['/orders/my']);
   }
