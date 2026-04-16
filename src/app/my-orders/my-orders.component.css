@@ -1,0 +1,47 @@
+h2 {
+  margin: 1.5rem auto;
+  max-width: 900px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+table {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 2rem auto;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+thead {
+  background: #f3f4f6;
+}
+
+th {
+  text-align: left;
+  padding: 0.9rem;
+  font-size: 0.85rem;
+  color: #444;
+}
+
+td {
+  padding: 0.9rem;
+  border-top: 1px solid #eee;
+  color: #333;
+}
+
+tbody tr:hover {
+  background: #f9fafb;
+}
+
+td:nth-child(2) {
+  font-weight: 500;
+}
+
+td:last-child {
+  font-weight: 600;
+  color: #111;
+}
