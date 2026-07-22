@@ -17,6 +17,8 @@ import { CommonModule } from '@angular/common';
 })
 export class UpdateProductComponent implements OnInit {
 
+  selectedFile?: File;
+
   productForm = new FormGroup({
     name: new FormControl<string>('', [Validators.required]),
     description: new FormControl<string>(''),
@@ -25,6 +27,7 @@ export class UpdateProductComponent implements OnInit {
   });
 
   productId!: number;
+  imageUrl: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +37,25 @@ export class UpdateProductComponent implements OnInit {
   ngOnInit(): void {
     this.productId = Number(this.route.snapshot.paramMap.get('id'));
     this.getProductById(this.productId);
+    this.getImage(this.productId);
+  }
+
+  public onFileSelected(event: Event): void {
+
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+    }
+
+  }
+
+  public getImage(id: number) {
+    this.productService.getImage(id).subscribe(blob => {
+      this.imageUrl = URL.createObjectURL(blob);
+    }, (err: any) => {
+      console.error("Image not exists!")
+    });
   }
 
   public getProductById(id: number) {
@@ -54,10 +76,38 @@ export class UpdateProductComponent implements OnInit {
 
     const product: Product = this.productForm.value as Product;
 
-    this.productService.updateProduct(this.productId, product).subscribe(() => {
-      console.log('Product update success!');
-    }, (err: any) => {
-      console.error('Update product error!');
-    })
+    this.productService.updateProduct(this.productId, product).subscribe({
+
+      next: () => {
+
+        if (this.selectedFile) {
+
+          this.productService
+            .uploadProductImage(this.productId, this.selectedFile)
+            .subscribe({
+
+              next: () => {
+                console.log("Product and image updated!");
+              },
+
+              error: () => {
+                console.error("Image upload failed!");
+              }
+
+            });
+
+        } else {
+          console.log("Product updated!");
+        }
+
+      },
+
+      error: () => {
+        console.error("Product update failed!");
+      }
+
+    });
+
   }
+  
 }

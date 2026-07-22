@@ -25,5 +25,12 @@
         <input type="price" formControlName="price" step="0.01" min="0">
     </label>
 
+    <label>
+        Product image:
+        <input type="file" accept="image/*" (change)="onFileSelected($event)">
+    </label>
+
+    <img *ngIf="imageUrl" [src]="imageUrl">
+
     <button type="submit">Update Product</button>
 </form>
